@@ -1,40 +1,43 @@
-# ¿ªÊ¼
+# å¼€å§‹
 
-TIME£º2019-2-20
+TIMEï¼š2019-2-20
+
 NAME: Jtodo
 
-# ÏîÄ¿³õÊ¼»¯
+
+
+# é¡¹ç›®åˆå§‹åŒ–
 
 ```javascript
-// ÏîÄ¿³õÊ¼»¯
+// é¡¹ç›®åˆå§‹åŒ–
 npm init
 
-// °²×°ÏîÄ¿ÒÀÀµ
+// å®‰è£…é¡¹ç›®ä¾èµ–
 cnpm install vue vue-loader css-loader vue-template-compiler --save
-// °²×°¿ª·¢Ê±ÒÀÀµ
+// å®‰è£…å¼€å‘æ—¶ä¾èµ–
 cnmp install webpack webpack-cli --save-dev
 ```
 
-# ÏîÄ¿Èë¿Ú
+# é¡¹ç›®å…¥å£
 
-ĞÂ½¨`src/index.js`ÎÄ¼ş£º
+æ–°å»º`src/index.js`æ–‡ä»¶ï¼š
 
 ```js
 import Vue from 'vue';
 import app from 'src/app.vue';
 
-// ´´½¨ĞéÄâ½Úµã
+// åˆ›å»ºè™šæ‹ŸèŠ‚ç‚¹
 const root = document.createElement('div');
 document.body.appendChild(root);
 
-// ´´½¨vue¶ÔÏó,²¢¹ÒÔØµ½root½Úµã
+// åˆ›å»ºvueå¯¹è±¡,å¹¶æŒ‚è½½åˆ°rootèŠ‚ç‚¹
 // h:createApp
 new Vue({
     render: h => h(app)
 }).$mount(root);
 ```
 
-# webpackÅäÖÃ
+# webpacké…ç½®
 
 ```js
 const path = require('path');
@@ -48,15 +51,15 @@ module.exports = {
         path: path.join(__dirname, 'dist')
     },
     module: {
-        rules: [ 
-            
-            // ´¦ÀívueÎÄ¼şµÄloader
-            { 
+        rules: [
+
+            // å¤„ç†vueæ–‡ä»¶çš„loader
+            {
 				test: /\.vue$/,
 				loader: 'vue-loader'
 			},
-            
-            // ´¦ÀístylÑùÊ½µÄloader
+
+            // å¤„ç†stylæ ·å¼çš„loader
             {
                 test: /\.(styl|stylus)$/,
                 use: {
@@ -64,11 +67,11 @@ module.exports = {
                     'css-loader',
                     'stylus-loader'
                 }
-            },            
-            
-            // ´¦Àí¸÷ÀàÍ¼Æ¬µÄÎÄ¼ş
-            // url-loader: µ±Í¼Æ¬Ğ¡ÓÚ1024×Ö½ÚÊ±£¬»á½«Í¼Æ¬×ª»»³Ébase64±àÂë£¬´ò°ü½øjsÎÄ¼şÖĞ
-            { 
+            },
+
+            // å¤„ç†å„ç±»å›¾ç‰‡çš„æ–‡ä»¶
+            // url-loader: å½“å›¾ç‰‡å°äº1024å­—èŠ‚æ—¶ï¼Œä¼šå°†å›¾ç‰‡è½¬æ¢æˆbase64ç¼–ç ï¼Œæ‰“åŒ…è¿›jsæ–‡ä»¶ä¸­
+            {
                 test:/\.(jpg|jpeg|png|gif|svg)$/,
                 use: [
                     {
@@ -76,13 +79,15 @@ module.exports = {
                         option: {
                             limit: 1024,
                             name: '[name].[ext]'
+                            // é™æ€èµ„æºå¯ä»¥å•ç‹¬è®¾ç½®å…¶ç›®å½•ç»“æ„
+                            // name: 'resources/[path][name].[hash:8].[ext]'
                         }
                     }
-                ]                
+                ]
             }
         ]
     },
-    // ´¦ÀívueÎÄ¼ş±ØĞëÌí¼ÓµÄÒ»¸öÄÚÈİ£¬²»È»»á±¨´í
+    // å¤„ç†vueæ–‡ä»¶å¿…é¡»æ·»åŠ çš„ä¸€ä¸ªå†…å®¹ï¼Œä¸ç„¶ä¼šæŠ¥é”™
     plugins: [
 		new VueLoaderPlugin(),
 	],
@@ -90,46 +95,46 @@ module.exports = {
 
 ```
 
-# ÉèÖÃ»·¾³±äÁ¿
+# è®¾ç½®ç¯å¢ƒå˜é‡
 
-ÓÃÓÚÇø·ÖÊÇ¿ª·¢»·¾³»¹ÊÇÉú²ú»·¾³¡£Ö®ËùÒÔÊ¹ÓÃ`cross-env`Õâ¸öÄ£¿é£¬ÊÇÒòÎªĞèÒª¶Ô`windows`ºÍ`Æ»¹û`ÕâÁ½¸öÆ½Ì¨×ö¼æÈİ´¦Àí£¬Ê¹ÓÃÕâ¸öÄ£¿é¿ÉÒÔ·½±ãÎÒÃÇÊ¹ÓÃ¡£
+ç”¨äºåŒºåˆ†æ˜¯å¼€å‘ç¯å¢ƒè¿˜æ˜¯ç”Ÿäº§ç¯å¢ƒã€‚ä¹‹æ‰€ä»¥ä½¿ç”¨`cross-env`è¿™ä¸ªæ¨¡å—ï¼Œæ˜¯å› ä¸ºéœ€è¦å¯¹`windows`å’Œ`è‹¹æœ`è¿™ä¸¤ä¸ªå¹³å°åšå…¼å®¹å¤„ç†ï¼Œä½¿ç”¨è¿™ä¸ªæ¨¡å—å¯ä»¥æ–¹ä¾¿æˆ‘ä»¬ä½¿ç”¨ã€‚
 
 ```js
 cnpm install cross-env --save-dev
 ```
 
-ÔÚ`package.json`ÎÄ¼şÖĞ£º
+åœ¨`package.json`æ–‡ä»¶ä¸­ï¼š
 
 ```json
 "build": "cross-env NODE_ENV=production webpack --config webpack.config.js"
 "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js"
 ```
 
-Æô¶¯½Å±¾ºó£¬ÕâĞ©±äÁ¿´æ´¢ÔÚ`process.env`Õâ¸ö±äÁ¿ÏÂ£¬ÄÇÃ´ÔÚ`webpack.config.js`ÎÄ¼şÖĞ£¬ÎÒÃÇ¾ÍÄÜÍ¨¹ıÕâ¸ö±äÁ¿È¥Çø·ÖÊÇ·ñÎª¿ª·¢»·¾³¡£
+å¯åŠ¨è„šæœ¬åï¼Œè¿™äº›å˜é‡å­˜å‚¨åœ¨`process.env`è¿™ä¸ªå˜é‡ä¸‹ï¼Œé‚£ä¹ˆåœ¨`webpack.config.js`æ–‡ä»¶ä¸­ï¼Œæˆ‘ä»¬å°±èƒ½é€šè¿‡è¿™ä¸ªå˜é‡å»åŒºåˆ†æ˜¯å¦ä¸ºå¼€å‘ç¯å¢ƒã€‚
 
 ```js
 const isDev = process.env.NODE_ENV === 'production';
 
 if(isDev) {
-    // Ìí¼ÓÒ»Ğ©±ğµÄÅäÖÃÏî
+    // æ·»åŠ ä¸€äº›åˆ«çš„é…ç½®é¡¹
 }
 ```
 
-# devServerÅäÖÃ
+# devServeré…ç½®
 
-ÔÚ¿ª·¢Ä£Ê½ÏÂ£¬ÎÒÃÇĞèÒªÆô¶¯Ò»¸ö¾²Ì¬·şÎñÆ÷¡£ÓÃÓÚ·ÃÎÊ±¾µØµÄ¾²Ì¬×ÊÔ´¡£
+åœ¨å¼€å‘æ¨¡å¼ä¸‹ï¼Œæˆ‘ä»¬éœ€è¦å¯åŠ¨ä¸€ä¸ªé™æ€æœåŠ¡å™¨ã€‚ç”¨äºè®¿é—®æœ¬åœ°çš„é™æ€èµ„æºã€‚
 
-°²×°£º
+å®‰è£…ï¼š
 
 ```js
 cnpm install webpack-dev-server --save-dev
 ```
 
-ÅäÖÃ£º
+é…ç½®ï¼š
 
 ```js
 if (isDev) {
-    // Ê¹ÓÃsource-map ·½±ãµ÷ÊÔ
+    // ä½¿ç”¨source-map æ–¹ä¾¿è°ƒè¯•
 	config.devtool = '#cheap-module-eval-source-map';
 	config.devServer = {
 		port: 8000,
@@ -137,7 +142,7 @@ if (isDev) {
 		overlay: {
 			errors: true
 		},
-		// Æô¶¯ÈÈ¼ÓÔØ¹¦ÄÜ
+		// å¯åŠ¨çƒ­åŠ è½½åŠŸèƒ½
 		hot: true
 	};
 	config.plugins.push(
@@ -147,19 +152,19 @@ if (isDev) {
 }
 ```
 
-# ÎÄ¼şÈë¿Ú
+# æ–‡ä»¶å…¥å£
 
-·şÎñÆô¶¯Æô¶¯ÆğÀ´Ö®ºó£¬ĞèÒªÒ»¸öÈë¿Ú`html`ÎÄ¼ş¡£È¥¼ÓÔØÎÒÃÇ´ò°üÉú³ÉµÄ`js`ÎÄ¼ş¡£
+æœåŠ¡å¯åŠ¨å¯åŠ¨èµ·æ¥ä¹‹åï¼Œéœ€è¦ä¸€ä¸ªå…¥å£`html`æ–‡ä»¶ã€‚å»åŠ è½½æˆ‘ä»¬æ‰“åŒ…ç”Ÿæˆçš„`js`æ–‡ä»¶ã€‚
 
-ËùÒÔÎÒÃÇ¿ÉÒÔ°²×°Ò»¸ö`html-webpack-plugin`Ä£¿é£º
+æ‰€ä»¥æˆ‘ä»¬å¯ä»¥å®‰è£…ä¸€ä¸ª`html-webpack-plugin`æ¨¡å—ï¼š
 
 ```js
 cnpm install html-webpack-plugin --save-dev
 ```
 
-**×÷ÓÃ£º** ×Ô¶¯Éú³ÉÒ»¸ö`HTML`ÎÄ¼ş£¬²¢½«´ò°üÉú³ÉµÄ`js`ÎÄ¼şÒıÈë£¬×÷ÎªÏîÄ¿Èë¿ÚÎÄ¼ş¡£
+**ä½œç”¨ï¼š** è‡ªåŠ¨ç”Ÿæˆä¸€ä¸ª`HTML`æ–‡ä»¶ï¼Œå¹¶å°†æ‰“åŒ…ç”Ÿæˆçš„`js`æ–‡ä»¶å¼•å…¥ï¼Œä½œä¸ºé¡¹ç›®å…¥å£æ–‡ä»¶ã€‚
 
-ÄÇÃ´ÈçºÎ¼òµ¥µÄÊ¹ÓÃ£º
+é‚£ä¹ˆå¦‚ä½•ç®€å•çš„ä½¿ç”¨ï¼š
 
 ```js
 // webpack.config.js
@@ -167,67 +172,135 @@ cnpm install html-webpack-plugin --save-dev
 const HTMLPlugin = require('html-webpack-plugin');
 
 plugins: [
-   // µ±Ê¹ÓÃvue ºÍ react¿ò¼ÜÊ±£¬Ê¹ÓÃµÄÒ»¸ö²å¼ş
-   // ×÷ÓÃ£ºÇø·Öµ±Ç°µÄ»·¾³
+   // å½“ä½¿ç”¨vue å’Œ reactæ¡†æ¶æ—¶ï¼Œä½¿ç”¨çš„ä¸€ä¸ªæ’ä»¶
+   // ä½œç”¨ï¼šåŒºåˆ†å½“å‰çš„ç¯å¢ƒ
    new webpack.DefinePlugin({
         'process.env': {
             NODE_ENV: isDev ? '"development"' : '"production"'
         }
-    }),               
+    }),
     new HTMLPlugin()
 ]
 ```
 
-# postcss-loaderÅäÖÃ
+# babelé…ç½®
 
-Èç¹ûÄ³Ğ©`css`Òª¿¼ÂÇµ½ä¯ÀÀÆ÷µÄ¼æÈİĞÔ(±ÈÈç`css3`ÖĞµÄ`flex`)£¬ÎÒÃÇÒª`webpack`ÔÚ´ò°üµÄ¹ı³ÌÖĞ×Ô¶¯ÎªÕâĞ©`css`ÊôĞÔ¼ÓÉÏä¯ÀÀÆ÷Ç°×º£¬ÕâÊ±¾ÍÓÃµ½ÁË`postcss-loader`(¾ÍÊÇÒ»¸öÆ½Ì¨)ºÍËü¶ÔÓ¦µÄ²å¼ş`autoprefixer`¡£
+> webpack 4.x | babel-loader 8.x | babel 7.x
 
-ĞÂ½¨`postcss.config.js`ÎÄ¼ş£º
+```bash
+npm install -D babel-loader @babel/core @babel/preset-env
+```
+
+> webpack 4.x | babel-loader 7.x | babel 6.x
+
+```bash
+npm install -D babel-loader@7 babel-core babel-preset-env
+```
+
+ä½œç”¨ï¼š
+
+* **babel-loaderï¼š**  ä½œä¸º`webpack`çš„`loader`çš„ä¸€ç§ï¼Œå®ç°å¯¹æŒ‡å®šæ–‡ä»¶ç±»å‹çš„å¤„ç†ã€‚
+* **babel-coreï¼š** ä¸º`babel-loader`æä¾›ä¸€ç³»åˆ—çš„`api`ã€‚
+* **babel-preset-envï¼š** å‘Šè¯‰`babel`ä½¿ç”¨å“ªç§è½¬ç è§„åˆ™è¿›è¡Œæ–‡ä»¶å¤„ç†ã€‚
+
+
+
+ä½¿ç”¨æ–¹æ³•ï¼š
+
+```js
+rules: [
+        {
+            test: /\.js$/,
+            exclude: path.join(__dirname, 'node_modules'),
+            include: path.join(__dirname, 'src'),
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['env']
+                }
+            }
+        },
+  ]
+```
+
+è¿˜æ˜¯æœ‰ä¸€ä¸ªè®©æˆ‘ç–‘æƒ‘çš„ç‚¹ï¼š`loader`é…ç½®åœ¨`webpack.config.base.js`æ–‡ä»¶ä¸­ï¼Œè€Œè¯¥æ–‡ä»¶åœ¨`build`ç›®å½•ä¸‹ï¼ŒæŒ‰ç†æ¥è¯´åŒ…å«çš„è·¯å¾„åº”è¯¥æ˜¯`path.join(__dirname, '../src')`è¿™æ ·çš„ã€‚ç„¶è€Œï¼Œè¿™æ ·çš„é…ç½®ä¼šå‡ºé”™ï¼Œåªæœ‰ä¸Šé¢çš„è¿™ç§é…ç½®æ‰ä¼šæ­£ç¡®è¿è¡Œã€‚
+
+# postcss-loaderé…ç½®
+
+å¦‚æœæŸäº›`css`è¦è€ƒè™‘åˆ°æµè§ˆå™¨çš„å…¼å®¹æ€§(æ¯”å¦‚`css3`ä¸­çš„`flex`)ï¼Œæˆ‘ä»¬è¦`webpack`åœ¨æ‰“åŒ…çš„è¿‡ç¨‹ä¸­è‡ªåŠ¨ä¸ºè¿™äº›`css`å±æ€§åŠ ä¸Šæµè§ˆå™¨å‰ç¼€ï¼Œè¿™æ—¶å°±ç”¨åˆ°äº†`postcss-loader`(å°±æ˜¯ä¸€ä¸ªå¹³å°)å’Œå®ƒå¯¹åº”çš„æ’ä»¶`autoprefixer`ã€‚
+
+æ–°å»º`postcss.config.js`æ–‡ä»¶ï¼š
 
 ```js
 const autoprefixer = require('autoprefixer');
 
+// å¿…é¡»è®¾ç½®æ”¯æŒçš„æµè§ˆå™¨ï¼Œæ‰ä¼šæ·»åŠ å‰ç¼€ï¼Œå¦åˆ™ä¸ä¼šç”Ÿæ•ˆ
 module.exports = {
-    plugins: [
-        autoprefixer()
-    ]
+	plugins: [
+		autoprefixer({
+			'browsers': [
+				'defaults',
+				'not ie < 11',
+				'last 2 versions',
+				'> 1%',
+				'iOS 7',
+				'last 3 iOS versions'
+			]
+		})
+	]
 };
+```
+
+ç„¶åå°±æ˜¯åœ¨é…ç½®æ–‡ä»¶ä¸­åŠ ä¸Š`postcss-loader`å°±å¯ä»¥äº†ï¼š
+
+```js
+rules: [
+            {
+                test: /\.(styl|stylus)$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader',
+                    'stylus-loader'
+                ]
+            }
+        ]
 ```
 
 
 
-# CSSÏßÉÏÓÅ»¯
+# CSSçº¿ä¸Šä¼˜åŒ–
 
-´ò°üÍê³É£¬·¢ÏÖ`CSS`ÈÔÈ»ÒÔ`JS`ĞÎÊ½ÔÚÎÒÃÇµÄ´úÂëÀï³ÊÏÖ£¬ÈçºÎ½«`CSS`´úÂëÁà³öÀ´£¬´ò°ü³ÉÒ»¸öµ¥¶ÀµÄÎÄ¼ş£¿
+æ‰“åŒ…å®Œæˆï¼Œå‘ç°`CSS`ä»ç„¶ä»¥`JS`å½¢å¼åœ¨æˆ‘ä»¬çš„ä»£ç é‡Œå‘ˆç°ï¼Œå¦‚ä½•å°†`CSS`ä»£ç æ‹å‡ºæ¥ï¼Œæ‰“åŒ…æˆä¸€ä¸ªå•ç‹¬çš„æ–‡ä»¶ï¼Ÿ
 
 ```js
 cnpm install extract-text-webpack-plugin --save-dev
 ```
 
-Õâ¸öÄ£¿é¿ÉÒÔ°ïÖúÎÒÃÇ½«·Ç`javascript`´úÂë£¬´ò°ü³ÉÒ»¸ö¾²Ì¬×ÊÔ´ÎÄ¼ş¡£
+è¿™ä¸ªæ¨¡å—å¯ä»¥å¸®åŠ©æˆ‘ä»¬å°†é`javascript`ä»£ç ï¼Œæ‰“åŒ…æˆä¸€ä¸ªé™æ€èµ„æºæ–‡ä»¶ã€‚
 
-µ«ÊÇÔÚ`webpack 4.x`°æ±¾Ê¹ÓÃ¹ı³ÌÖĞ³öÏÖÁËÎÊÌâ£º
+ä½†æ˜¯åœ¨`webpack 4.x`ç‰ˆæœ¬ä½¿ç”¨è¿‡ç¨‹ä¸­å‡ºç°äº†é—®é¢˜ï¼š
 
-* 1.°æ±¾²»¼æÈİ(¿ÉÒÔÊ¹ÓÃ`extract-text-webpack-plugin@next`)
-* 2.ÎŞ·¨Ê¹ÓÃ`hash`Öµ
+* 1.ç‰ˆæœ¬ä¸å…¼å®¹(å¯ä»¥ä½¿ç”¨`extract-text-webpack-plugin@next`)
+* 2.æ— æ³•ä½¿ç”¨`hash`å€¼
 
-¹Ù·½¸üÍÆ¼öÎÒÃÇÊ¹ÓÃ£º`mini-css-extract-plugin`Õâ¸öÄ£¿é£¬Ê×ÏÈ°²×°¸ÃÄ£¿é£º
+å®˜æ–¹æ›´æ¨èæˆ‘ä»¬ä½¿ç”¨ï¼š`mini-css-extract-plugin`è¿™ä¸ªæ¨¡å—ï¼Œé¦–å…ˆå®‰è£…è¯¥æ¨¡å—ï¼š
 
 ```js
 cnpm install mini-css-extract-plugin --save-dev
 ```
 
-Ê¹ÓÃ£¬ÔÚ`webpack.config.js`ÎÄ¼şÖĞÅäÖÃ£¬Õâ¸öÄ£¿é»á½«vue×é¼şÖĞµÄÑùÊ½´úÂëÒ²ÌáÈ¡³öÀ´£º
+ä½¿ç”¨ï¼Œåœ¨`webpack.config.js`æ–‡ä»¶ä¸­é…ç½®ï¼Œè¿™ä¸ªæ¨¡å—ä¼šå°†vueç»„ä»¶ä¸­çš„æ ·å¼ä»£ç ä¹Ÿæå–å‡ºæ¥ï¼š
 
 ```js
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 if(isDev) {
-    // ¿ª·¢Ä£Ê½ÏÂ
+    // å¼€å‘æ¨¡å¼ä¸‹
     // ...
 } else {
     config.output.filename = '[name].[chunkhash:8].js';
-    // ½«cssÎÄ¼şµ¥¶À´ò°ü
+    // å°†cssæ–‡ä»¶å•ç‹¬æ‰“åŒ…
     config.module.rules.push({
         test: /\.(styl|stylus)/,
         use: [
@@ -238,17 +311,12 @@ if(isDev) {
                 }
             },
             'css-loader',
-            {
-                loader: 'postcss-loader',
-                options: {
-                    sourceMap: true
-                }
-            },
+            'postcss-loader',
             'stylus-loader'
         ]
     });
-    
-    // Ìí¼Ó²å¼ş
+
+    // æ·»åŠ æ’ä»¶
     config.plugins.push(
         new MiniCssExtractPlugin({
             filename: 'style.[contenthash:8].css'
@@ -257,210 +325,257 @@ if(isDev) {
 }
 ```
 
-# µ¥¶À´ò°üÀà¿âÎÄ¼ş
+# å•ç‹¬æ‰“åŒ…ç±»åº“æ–‡ä»¶
 
-ÔÚ`webpack 4.x`°æ±¾ÖĞ£¬´úÂë·Ö¸ô´ò°üµÄ·½Ê½·¢ÉúÁËºÜ´óµÄ±ä»¯£¬¾ßÌå¿ÉÒÔÊ¹ÓÃÈçÏÂµÄ·½Ê½½øĞĞ´ò°ü´¦Àí£º
+åœ¨`webpack 4.x`ç‰ˆæœ¬ä¸­ï¼Œä»£ç åˆ†éš”æ‰“åŒ…çš„æ–¹å¼å‘ç”Ÿäº†å¾ˆå¤§çš„å˜åŒ–ï¼Œå…·ä½“å¯ä»¥ä½¿ç”¨å¦‚ä¸‹çš„æ–¹å¼è¿›è¡Œæ‰“åŒ…å¤„ç†ï¼š
 
 ```js
 	config.entry = {
-		app: path.join(__dirname, 'src/index.js'),
-		vendor: ['vue']
+		app: path.join(__dirname, 'src/index.js')
 	};
 	config.optimization = {
 		splitChunks: {
 			name: 'vendor',
 			chunks: 'all'
-		}
+		},
+        runtimeChunk: true
 	};
 ```
 
-ÏêÏ¸µÄ»°£¬ÓĞºÜ¶àµÄ²ÎÊı£º
+è¯¦ç»†çš„è¯ï¼Œæœ‰å¾ˆå¤šçš„å‚æ•°ï¼š
 
 ```js
 optimization:{
     splitChunks:{
-        chunks:async,//±íÊ¾ÏÔÊ¾¿éµÄ·¶Î§£¬Èı¸ö¿ÉÑ¡Öµ£º
-        //initial(³õÊ¼¿é)¡¢async(°´Ğè¼ÓÔØ¿é)¡¢all(Ä¬ÈÏ£¬È«²¿¿é)
+        chunks:async,//è¡¨ç¤ºæ˜¾ç¤ºå—çš„èŒƒå›´ï¼Œä¸‰ä¸ªå¯é€‰å€¼ï¼š
+        //initial(åˆå§‹å—)ã€async(æŒ‰éœ€åŠ è½½å—)ã€all(é»˜è®¤ï¼Œå…¨éƒ¨å—)
 
-        minSize:0,//±íÊ¾ÔÚ·ÖÀëÇ°µÄ×îĞ¡Ä£¿é´óĞ¡£¬Ä¬ÈÏÎª0£¬×îĞ¡Îª30000
+        minSize:0,//è¡¨ç¤ºåœ¨åˆ†ç¦»å‰çš„æœ€å°æ¨¡å—å¤§å°ï¼Œé»˜è®¤ä¸º0ï¼Œæœ€å°ä¸º30000
 
-        minChunks:1,//±íÊ¾·ÖÀëÇ°±»ÒıÓÃ´ÎÊı,Ä¬ÈÏÎª1
+        minChunks:1,//è¡¨ç¤ºåˆ†ç¦»å‰è¢«å¼•ç”¨æ¬¡æ•°,é»˜è®¤ä¸º1
 
-        maxAsyncRequests:1,//×î´ó°´Ğè¼ÓÔØ´ÎÊı£¬×î´óÒì²½¼ÓÔØ´ÎÊı£¬Ä¬ÈÏ1
+        maxAsyncRequests:1,//æœ€å¤§æŒ‰éœ€åŠ è½½æ¬¡æ•°ï¼Œæœ€å¤§å¼‚æ­¥åŠ è½½æ¬¡æ•°ï¼Œé»˜è®¤1
 
-        maxInitialRequests:1,//×î´ó³õÊ¼»¯¼ÓÔØ´ÎÊı£¬Ò»¸öÈë¿ÚÎÄ¼ş¿ÉÒÔ²¢ĞĞ¼ÓÔØµÄ×î´óÎÄ¼şÊıÁ¿£¬Ä¬ÈÏ1
+        maxInitialRequests:1,//æœ€å¤§åˆå§‹åŒ–åŠ è½½æ¬¡æ•°ï¼Œä¸€ä¸ªå…¥å£æ–‡ä»¶å¯ä»¥å¹¶è¡ŒåŠ è½½çš„æœ€å¤§æ–‡ä»¶æ•°é‡ï¼Œé»˜è®¤1
 
-        automaticNameDelimiter: '~',//´ò°ü·Ö¸ô·û£¬Èô¸ÄÎª'-'Ôò·ÖÀëºóµÄjsÄ¬ÈÏÃüÃû¹æÔòÎª[À´Ô´]-[Èë¿Úkey].js
+        automaticNameDelimiter: '~',//æ‰“åŒ…åˆ†éš”ç¬¦ï¼Œè‹¥æ”¹ä¸º'-'åˆ™åˆ†ç¦»åçš„jsé»˜è®¤å‘½åè§„åˆ™ä¸º[æ¥æº]-[å…¥å£key].js
 
-        name: function(){},//´ò°üºóµÄÃû³Æ£¬´ËÑ¡Ïî¿É½ÓÊÜº¯Êı£¬Ä¬ÈÏtrue,,ÓÉchunkºÍhashÖµ×Ô¶¯Éú³É£¬
-        //µ±´æÔÚÆ¥ÅäµÄ»º´æ×éÊ±£¬ÃüÃûÊ¹ÓÃ»º´æ×éÖĞµÄnameÖµ£¬Èô²»ÔÚÔòÎª[À´Ô´]~[Èë¿Úkey].js
+        name: function(){},//æ‰“åŒ…åçš„åç§°ï¼Œæ­¤é€‰é¡¹å¯æ¥å—å‡½æ•°ï¼Œé»˜è®¤true,,ç”±chunkå’Œhashå€¼è‡ªåŠ¨ç”Ÿæˆï¼Œ
+        //å½“å­˜åœ¨åŒ¹é…çš„ç¼“å­˜ç»„æ—¶ï¼Œå‘½åä½¿ç”¨ç¼“å­˜ç»„ä¸­çš„nameå€¼ï¼Œè‹¥ä¸åœ¨åˆ™ä¸º[æ¥æº]~[å…¥å£key].js
 
-        cacheGroups:{//ÉèÖÃ»º´æchunks
+        cacheGroups:{//è®¾ç½®ç¼“å­˜chunks
 
-            priority: 0,//»º´æ×éÓÅÏÈ¼¶
-            //µ±ĞèÒªÓÅÏÈÆ¥Åä»º´æ×éµÄ¹æÔòÊ±£¬priorityĞèÒªÉèÖÃÎªÕıÊı£¬µ±ĞèÒªÓÅÏÈÆ¥ÅäÄ¬ÈÏÉèÖÃÊ±£¬»º´æ×éĞèÉèÖÃÎª¸ºÊı£¬0ÎªÁ½Õß·Ö¸îÏß
+            priority: 0,//ç¼“å­˜ç»„ä¼˜å…ˆçº§
+            //å½“éœ€è¦ä¼˜å…ˆåŒ¹é…ç¼“å­˜ç»„çš„è§„åˆ™æ—¶ï¼Œpriorityéœ€è¦è®¾ç½®ä¸ºæ­£æ•°ï¼Œå½“éœ€è¦ä¼˜å…ˆåŒ¹é…é»˜è®¤è®¾ç½®æ—¶ï¼Œç¼“å­˜ç»„éœ€è®¾ç½®ä¸ºè´Ÿæ•°ï¼Œ0ä¸ºä¸¤è€…åˆ†å‰²çº¿
 
-            default:{//ÉèÖÃ»º´æ×éÄ¬ÈÏÅäÖÃ£¬¿ÉÍ¨¹ıdefault:false½ûÓÃÄ¬ÈÏ»º´æ×é£¬
-            //È»ºó¾Í¿ÉÒÔ×Ô¶¨Òå»º´æ×é£¬½«³õÊ¼»¯¼ÓÔØÊ±±»ÖØ¸´ÒıÓÃµÄÄ£¿é½øĞĞ²ğ·Ö
-                minChunks:2,//ÒıÓÃÁ½´Î
-                priority:-20,//»º´æ×éÓÅÏÈ¼¶Îª-20
-                reuseExistingChunk:true,//±íÊ¾¿ÉÒÔÊ¹ÓÃÒÑ¾­´æÔÚµÄ¿é£¬¼´Èç¹ûÂú×ãÌõ¼şµÄ¿éÒÑ¾­´æÔÚ¾ÍÊÇÓÃ¼ºÓĞµÄµÄ£¬²»ÔÙ´´½¨Ò»¸öĞÂµÄ¿é
-            }£¬
-            [key]:{//×Ô¶¨Òå»º´æ×é£¬¿ÉÒÔ¸ù¾İĞèÇó£¬×ÔÓÉ´´½¨
+            default:{//è®¾ç½®ç¼“å­˜ç»„é»˜è®¤é…ç½®ï¼Œå¯é€šè¿‡default:falseç¦ç”¨é»˜è®¤ç¼“å­˜ç»„ï¼Œ
+            //ç„¶åå°±å¯ä»¥è‡ªå®šä¹‰ç¼“å­˜ç»„ï¼Œå°†åˆå§‹åŒ–åŠ è½½æ—¶è¢«é‡å¤å¼•ç”¨çš„æ¨¡å—è¿›è¡Œæ‹†åˆ†
+                minChunks:2,//å¼•ç”¨ä¸¤æ¬¡
+                priority:-20,//ç¼“å­˜ç»„ä¼˜å…ˆçº§ä¸º-20
+                reuseExistingChunk:true,//è¡¨ç¤ºå¯ä»¥ä½¿ç”¨å·²ç»å­˜åœ¨çš„å—ï¼Œå³å¦‚æœæ»¡è¶³æ¡ä»¶çš„å—å·²ç»å­˜åœ¨å°±æ˜¯ç”¨å·±æœ‰çš„çš„ï¼Œä¸å†åˆ›å»ºä¸€ä¸ªæ–°çš„å—
+            }ï¼Œ
+            [key]:{//è‡ªå®šä¹‰ç¼“å­˜ç»„ï¼Œå¯ä»¥æ ¹æ®éœ€æ±‚ï¼Œè‡ªç”±åˆ›å»º
                 chunks:'initial',
-                test: /vue/,//ÕıÔò¹æÔòÑéÖ¤£¬Èç·ûºÏ¾ÍÌáÈ¡chunk·ÅÈëµ±Ç°»º´æ×é£¬Öµ¿ÉÒÔÊÇfunction¡¢boolean¡¢string¡¢RegExp£¬Ä¬ÈÏÎª¿Õ
-                enforce: true//ÓÅÏÈ´¦Àí
+                test: /vue/,//æ­£åˆ™è§„åˆ™éªŒè¯ï¼Œå¦‚ç¬¦åˆå°±æå–chunkæ”¾å…¥å½“å‰ç¼“å­˜ç»„ï¼Œå€¼å¯ä»¥æ˜¯functionã€booleanã€stringã€RegExpï¼Œé»˜è®¤ä¸ºç©º
+                enforce: true//ä¼˜å…ˆå¤„ç†
             }
         }
     }
 }
---------------------- 
-×÷Õß£ºbubbling_coding 
-À´Ô´£ºCSDN 
-Ô­ÎÄ£ºhttps://blog.csdn.net/bubbling_coding/article/details/81585412 
-°æÈ¨ÉùÃ÷£º±¾ÎÄÎª²©Ö÷Ô­´´ÎÄÕÂ£¬×ªÔØÇë¸½ÉÏ²©ÎÄÁ´½Ó£¡
+---------------------
+ä½œè€…ï¼šbubbling_coding
+æ¥æºï¼šCSDN
+åŸæ–‡ï¼šhttps://blog.csdn.net/bubbling_coding/article/details/81585412
 ```
 
 
 
-
-
-# ÈıÖÖhashÇø±ğ
+# ä¸‰ç§hashåŒºåˆ«
 
 * **hash**
 
-  `hash`ÊÇ¸úÕû¸öÏîÄ¿µÄ¹¹½¨Ïà¹Ø£¬Ö»ÒªÏîÄ¿ÀïÓĞÎÄ¼ş¸ü¸Ä£¬Õû¸öÏîÄ¿¹¹½¨µÄ`hash`Öµ¶¼»á¸ü¸Ä£¬²¢ÇÒÈ«²¿ÎÄ¼ş¶¼¹«ÓÃÏàÍ¬µÄ`hash`Öµ¡£
+  `hash`æ˜¯è·Ÿæ•´ä¸ªé¡¹ç›®çš„æ„å»ºç›¸å…³ï¼Œåªè¦é¡¹ç›®é‡Œæœ‰æ–‡ä»¶æ›´æ”¹ï¼Œæ•´ä¸ªé¡¹ç›®æ„å»ºçš„`hash`å€¼éƒ½ä¼šæ›´æ”¹ï¼Œå¹¶ä¸”å…¨éƒ¨æ–‡ä»¶éƒ½å…¬ç”¨ç›¸åŒçš„`hash`å€¼ã€‚
 
 * **chunkhash**
-  Ê¹ÓÃ`hash`¼ÆËãµÄ»°£¬Ã¿´Î¹¹½¨¶¼²»ÏàÍ¬£¬ÕâÑùÃ»°ì·¨ÊµÏÖ»º´æĞ§¹û£¬ÎÒÃÇĞèÒª»»ÁíÒ»ÖÖ¹şÏ£Öµ¼ÆËã·½Ê½¡£
-`chunkhash`ºÍ`hash`²»Ò»Ñù£¬Ëü¸ù¾İ²»Í¬µÄÈë¿ÚÎÄ¼ş`(Entry)`½øĞĞÒÀÀµÎÄ¼ş½âÎö¡¢¹¹½¨¶ÔÓ¦µÄ`chunk`£¬Éú³É¶ÔÓ¦µÄ¹şÏ£Öµ¡£ÎÒÃÇÔÚÉú²ú»·¾³Àï°ÑÒ»Ğ©¹«¹²¿âºÍ³ÌĞòÈë¿ÚÎÄ¼şÇø·Ö¿ª£¬µ¥¶À´ò°ü¹¹½¨£¬½Ó×ÅÎÒÃÇ²ÉÓÃ`chunkhash`µÄ·½Ê½Éú³É¹şÏ£Öµ£¬ÄÇÃ´Ö»ÒªÎÒÃÇ²»¸Ä¶¯¹«¹²¿âµÄ´úÂë£¬¾Í¿ÉÒÔ±£Ö¤Æä¹şÏ£Öµ²»»áÊÜÓ°Ïì¡£
+  ä½¿ç”¨`hash`è®¡ç®—çš„è¯ï¼Œæ¯æ¬¡æ„å»ºéƒ½ä¸ç›¸åŒï¼Œè¿™æ ·æ²¡åŠæ³•å®ç°ç¼“å­˜æ•ˆæœï¼Œæˆ‘ä»¬éœ€è¦æ¢å¦ä¸€ç§å“ˆå¸Œå€¼è®¡ç®—æ–¹å¼ã€‚
+`chunkhash`å’Œ`hash`ä¸ä¸€æ ·ï¼Œå®ƒæ ¹æ®ä¸åŒçš„å…¥å£æ–‡ä»¶`(Entry)`è¿›è¡Œä¾èµ–æ–‡ä»¶è§£æã€æ„å»ºå¯¹åº”çš„`chunk`ï¼Œç”Ÿæˆå¯¹åº”çš„å“ˆå¸Œå€¼ã€‚æˆ‘ä»¬åœ¨ç”Ÿäº§ç¯å¢ƒé‡ŒæŠŠä¸€äº›å…¬å…±åº“å’Œç¨‹åºå…¥å£æ–‡ä»¶åŒºåˆ†å¼€ï¼Œå•ç‹¬æ‰“åŒ…æ„å»ºï¼Œæ¥ç€æˆ‘ä»¬é‡‡ç”¨`chunkhash`çš„æ–¹å¼ç”Ÿæˆå“ˆå¸Œå€¼ï¼Œé‚£ä¹ˆåªè¦æˆ‘ä»¬ä¸æ”¹åŠ¨å…¬å…±åº“çš„ä»£ç ï¼Œå°±å¯ä»¥ä¿è¯å…¶å“ˆå¸Œå€¼ä¸ä¼šå—å½±å“ã€‚
 
 * **contenthash**
-`contenthash`ÊÇÕë¶ÔÎÄ¼şÄÚÈİ¼¶±ğµÄ£¬Ö»ÓĞÄã×Ô¼ºÄ£¿éµÄÄÚÈİ±äÁË£¬ÄÇÃ´`hash`Öµ²Å¸Ä±ä£¬ËùÒÔÎÒÃÇ¿ÉÒÔÍ¨¹ı`contenthash`½â¾öÉÏËßÎÊÌâ¡£
+`contenthash`æ˜¯é’ˆå¯¹æ–‡ä»¶å†…å®¹çº§åˆ«çš„ï¼Œåªæœ‰ä½ è‡ªå·±æ¨¡å—çš„å†…å®¹å˜äº†ï¼Œé‚£ä¹ˆ`hash`å€¼æ‰æ”¹å˜ï¼Œæ‰€ä»¥æˆ‘ä»¬å¯ä»¥é€šè¿‡`contenthash`è§£å†³ä¸Šè¯‰é—®é¢˜ã€‚
 
- 
 
-# webpackÕû¸öÅäÖÃ
+
+# æ‹†åˆ†é…ç½®æ–‡ä»¶
+
+ä½¿ç”¨`webpack-merge`å¯ä»¥æ‹†åˆ†å°†é…ç½®æ–‡ä»¶æ‹†åˆ†ä¸ºï¼š`webpack.config.base.js`å’Œ`webpack.config.client.js`è¿™ä¸¤ä¸ªæ–‡ä»¶ã€‚å…·ä½“æ“ä½œï¼š
+
+```bash
+cnpm install webpack-merge --save-dev
+```
+
+ç„¶åå°±å¯ä»¥åœ¨é…ç½®æ–‡ä»¶ä¸­ä½¿ç”¨ï¼š
 
 ```js
-const path = require('path');
-const webpack = require('webpack');
-const { VueLoaderPlugin } = require('vue-loader');
-const HTMLPlugin = require('html-webpack-plugin');
-const MiniCssPlugin = require('mini-css-extract-plugin');
+const merge = require('webpack-merge');
+// å¯¼å…¥åŸºç¡€é…ç½®
+const baseConfig = require('./webpack.config.base');
 
-// ÅĞ¶ÏÊÇ·ñÎª¿ª·¢Ä£Ê½
-const isDev = process.env.NODE_ENV === 'development';
-
-const config = {
-	mode: isDev ? 'development' : 'production',
-	entry: path.join(__dirname, 'src/index.js'),
-	output: {
-		filename: 'bundle.[hash:8].js',
-		path: path.join(__dirname, 'dist')
-	},
-	module: {
-		rules: [{ // ´¦ÀívueÎÄ¼şµÄloader
-			test: /\.vue$/,
-			loader: 'vue-loader'
-		},
-			{ //  ´¦ÀíÍ¼Æ¬×ÊÔ´
-				test: /\.(jpg|jpeg|svg|png|gif)$/,
-				use: [{
-					loader: 'url-loader',
-					options: {
-						limit: 1024,
-						name: '[name].[ext]'
-					}
-				}]
-			}
-		]
-	},
-
-	plugins: [
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: isDev ? '"development"' : '"production"'
-			}
-		}),
-		new VueLoaderPlugin(),
-		new HTMLPlugin()
-	]
-};
-
-if (isDev) {
-	config.devtool = '#cheap-module-eval-source-map';
-	// ´¦ÀístylusÑùÊ½ÎÄ¼şµÄloader
-	config.module.rules.push({
-		test: /\.(styl|stylus)$/,
-		use: [
-			'style-loader',
-			'css-loader',
-			{
-				loader: 'postcss-loader',
-				options: {
-					sourceMap: true
-				}
-			},
-			'stylus-loader'
-		]
-	});
-	config.devServer = {
-		port: 8000,
-		host: '0.0.0.0',
-		overlay: {
-			errors: true
-		},
-		// Æô¶¯ÈÈ¼ÓÔØ¹¦ÄÜ
-		hot: true
-	};
-	config.plugins.push(
-		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoEmitOnErrorsPlugin()
-	);
+let config = null;
+if(isDev) {
+    config = merge(baseConfig, {
+        // developmenté…ç½®
+    })
 } else {
-	// ÏßÉÏ»·¾³
-	config.output.filename = '[name].[chunkhash:8].js';
-	config.module.rules.push({
-		test: /\.(styl|stylus)$/,
-		use: [
-			{
-				loader: MiniCssPlugin.loader,
-				options: {
-					minimize: true
-				}
-			},
-			'css-loader',
-			{
-				loader: 'postcss-loader',
-				options: {
-					sourceMap: true
-				}
-			},
-			'stylus-loader'
-		]
-	});
-
-	config.entry = {
-		app: path.join(__dirname, 'src/index.js'),
-		vendor: ['vue']
-	};
-	config.optimization = {
-		splitChunks: {
-			name: 'vendor',
-			chunks: 'all'
-		}
-	};
-
-	config.plugins.push(
-		new MiniCssPlugin({
-			filename: 'style.[contenthash:8].css'
-		})
-	);
+    config = merge(baseConfig, {
+        // productioné…ç½®
+    })
 }
-
-module.exports = config;
 ```
+
+# ä¼˜åŒ–ç›®å½•ç»“æ„
+
+ä¸ºäº†ä½¿æˆ‘ä»¬çš„ä»£ç æ›´åŠ æ¸…æ™°ï¼Œåˆç†çš„ç›®å½•ç»“æ„å¿…ä¸å¯å°‘ã€‚ä»¥ä¸‹ï¼Œå°±æ˜¯æ­¤æ¬¡é¡¹ç›®çš„ç›®å½•ç»“æ„ï¼š
+
+![kIaBWQ.png](https://s2.ax1x.com/2019/02/26/kIaBWQ.png)
+
+
+
+# è‡ªåŠ¨åˆ é™¤ç›®å½•
+
+å½“æ¯æ¬¡å»`build`å·¥ç¨‹çš„æ—¶å€™ï¼Œéƒ½è¦å…ˆæ‰‹åŠ¨åˆ é™¤`dist`ç›®å½•ï¼Œæœ‰æ²¡æœ‰ä»€ä¹ˆåŠæ³• ï¼Œè®©å·¥å…·å¸®åŠ©æˆ‘ä»¬åšè¿™ä¸ªäº‹æƒ…å‘¢ï¼Ÿ
+
+é¦–å…ˆï¼Œéœ€è¦å®‰è£…ä¸€ä¸ª`rimraf`çš„æ¨¡å—ï¼š
+
+```bash
+cnpm install rimraf --save-dev
+```
+
+åœ¨`package.json`ä¸­å»ä½¿ç”¨ï¼š
+
+```json
+"build:client": "cross-env NODE_ENV=production webpack --config                                build/webpack.config.client.js",
+
+"clean":"rimraf dist",
+"build":"npm run clean && npm run build:client",
+```
+
+# vueä¸­Eslintä»£ç æ£€æŸ¥
+
+å®‰è£…`eslint`ï¼Œå¹¶ç»§æ‰¿`standard`è§„åˆ™ï¼š
+
+```bash
+cnpm i eslint eslint-config-standard eslint-plugin-standard eslint-plugin-promise eslint-plugin-import eslint-plugin-node -D
+```
+
+åœ¨`package.json`æ–‡ä»¶ä¸­ä½¿ç”¨ï¼š
+
+```json
+"lint": "eslint --ext .js --ext .vue src/",
+"lint-fix": "eslint --fix --ext .js --ext .vue src/",
+```
+
+è¿™æ ·ä¸€æ¥å°±å¯ä»¥ä½¿ç”¨`npm run lint`æ£€æŸ¥ä»£ç ï¼Œä½¿ç”¨`lint-fix`æ¥ä¿®å¤ä»£ç ã€‚
+
+å¦‚æœå¸Œæœ›æ¯æ¬¡ä¿®æ”¹ä»£ç ï¼Œ`eslint`éƒ½å¯ä»¥å¸®æˆ‘ä»¬æ£€æŸ¥ï¼Œé‚£ä¹ˆè¿˜éœ€è¦å‡ ä¸ªæ¨¡å—ï¼š
+
+```bash
+cnpm i eslint-loader babel-loader -D
+```
+
+æ–°å»º`.eslintrc`æ–‡ä»¶ï¼š
+
+```js
+{
+  "extends": [
+    // ç»§æ‰¿æ ‡å‡†è§„åˆ™
+    "standard",
+    "plugin:vue/recommended"
+  ],
+  "plugins": [
+    "import",
+    "html"
+  ],
+  // å› ä¸ºä½¿ç”¨äº†babelå¯¹ä»£ç è¿›è¡Œäº†ç¼–è¯‘
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+   // è‡ªå®šä¹‰è§„åˆ™
+  "rules": {
+    "semi": "off",
+    "indent": "off",
+    "vue/script-indent": "off",
+    "vue/html-self-closing": "off"
+  }
+}
+```
+
+åœ¨`webpack.config.base.js`çš„`rules`ä¸­æ·»åŠ é…ç½®ï¼Œå¯¹ä»¥`vue`æˆ–`js`ç»“å°¾çš„æ–‡ä»¶è¿›è¡Œ`eslint`é¢„å¤„ç†ï¼š
+
+```js
+rules: [
+    {
+        test: /\.(vue|js)$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+        enforce: 'pre'
+      },
+]
+```
+
+# editorconfigé…ç½®
+
+æ–°å»º`.editorconfig`æ–‡ä»¶ï¼š
+
+```js
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+```
+
+# gitæäº¤å‰ä»£ç æ£€æŸ¥
+
+æˆ‘ä»¬ä¸å¸Œæœ›å°†é£æ ¼æœ‰é—®é¢˜çš„ä»£ç æäº¤åˆ°`git`ä»“åº“ä¸­ï¼Œé‚£ä¹ˆæ€æ ·é¿å…è¿™ä¸ªäº‹æƒ…å‘¢ï¼Ÿ
+
+éœ€è¦ä¸€ä¸ªç®€å•çš„`npm`åŒ…æ¥å¸®åŠ©æˆ‘ä»¬åšè¿™ä¸ªäº‹æƒ…ï¼Œæ³¨æ„åœ¨å®‰è£…è¿™ä¸ªåŒ…ä¹‹å‰ï¼Œå¿…é¡»å…ˆè¿›è¡Œ`git init`ã€‚åŸå› æ˜¯`husky`å®‰è£…åï¼Œä¼šåœ¨`.git`æ–‡ä»¶ä¸­æ·»åŠ `githook`ï¼Œå¦‚æœæ²¡æœ‰è¿™ä¸ªç›®å½•ï¼Œæ·»åŠ å°±ä¼šä¸æˆåŠŸï¼Œé‚£ä¹ˆè¿™ä¸ªåŠŸèƒ½å°±æ— æ³•ä½¿ç”¨äº†ã€‚
+
+```bash
+cnpm i husky -D
+```
+
+ç„¶ååœ¨`package.json`ä¸­æ·»åŠ é…ç½®ï¼š
+
+```json
+"lint": "eslint --ext .js --ext .vue src/",
+"precommit": "npm run lint"
+```
+
+åœ¨ä»£ç æäº¤å‰å»ä½¿ç”¨`eslint`æ£€æŸ¥ï¼Œå¦‚æœä¸åˆæ ¼åˆ™ä¼šç›´æ¥é€€å‡ºè¿›ç¨‹ï¼Œä¸ä¼šå°†ä»£ç æäº¤åˆ°`git`ä»“åº“ä¸­ã€‚
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
