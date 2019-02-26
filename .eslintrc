@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "standard",
+    "plugin:vue/recommended"
+  ],
+  "plugins": [
+    "import",
+    "html"
+  ],
+  "parserOptions": {
+    "parser": "babel-eslint"
+  },
+  "rules": {
+    "semi": "off",
+    "indent": "off",
+    "vue/script-indent": "off",
+    "vue/html-self-closing": "off"
+  }
+}
