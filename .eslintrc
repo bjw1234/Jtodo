@@ -11,8 +11,8 @@
     "parser": "babel-eslint"
   },
   "rules": {
-    "semi": "off",
-    "indent": "off",
+    "semi": "off", // 不检查分号
+    "indent": "off", // 不检查缩进
     "vue/script-indent": "off",
     "vue/html-self-closing": "off"
   }
