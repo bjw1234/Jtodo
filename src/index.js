@@ -6,6 +6,7 @@ import './assets/style/global.styl';
 
 // 创建挂载节点
 const root = document.createElement('div');
+root.id = 'test-id';
 document.body.appendChild(root);
 
 new Vue({

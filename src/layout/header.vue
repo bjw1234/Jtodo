@@ -13,9 +13,10 @@
     text-align center
     h1
       font-size 100px
-      background-image linear-gradient(#167, #202d40)
+      background-image: linear-gradient(#167, #325de9);
       -webkit-background-clip text
       text-fill-color transparent
       -webkit-text-fill-color transparent
-      margin 20px
+      margin 0
+      padding 20px
 </style>

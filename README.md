@@ -453,8 +453,7 @@ cnpm install rimraf --save-dev
 在`package.json`中去使用：
 
 ```json
-"build:client": "cross-env NODE_ENV=production webpack --config                                build/webpack.config.client.js",
-
+"build:client": "cross-env NODE_ENV=production webpack --config build/webpack.config.client.js",
 "clean":"rimraf dist",
 "build":"npm run clean && npm run build:client",
 ```

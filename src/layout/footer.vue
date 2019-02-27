@@ -16,7 +16,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
   #footer
-    margin 40px
+    padding 40px
     text-align center
     color #e4eee3
     font-size 15px
