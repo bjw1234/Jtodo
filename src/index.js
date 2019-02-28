@@ -1,14 +1,13 @@
 import Vue from 'vue';
 import app from './app.vue';
+import router from './router/router';
 
 // 全局样式
 import './assets/style/global.styl';
 
-// 创建挂载节点
-const root = document.createElement('div');
-root.id = 'test-id';
-document.body.appendChild(root);
-
+// eslint-disable-next-line
 new Vue({
-  render: h => h(app)
-}).$mount(root);
+  el: '#app',
+  render: h => h(app),
+  router
+});

@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const { VueLoaderPlugin } = require('vue-loader');
+const {VueLoaderPlugin} = require('vue-loader');
 const HTMLPlugin = require('html-webpack-plugin');
 const MiniCssPlugin = require('mini-css-extract-plugin');
 
@@ -17,7 +17,9 @@ const defaultPlugins = [
     }
   }),
   new VueLoaderPlugin(),
-  new HTMLPlugin()
+  new HTMLPlugin({
+    template: path.join(__dirname, '../src/template.html')
+  })
 ];
 
 let config = null;
@@ -45,6 +47,7 @@ if (isDev) {
       overlay: {
         errors: true
       },
+      historyApiFallback: true,
       // 启动热加载功能
       hot: true
     },

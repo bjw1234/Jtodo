@@ -4,7 +4,7 @@ const AlertBox = {
   template: `
     <div :style="style">
         <strong>Error!</strong>
-        <slot msg="hello world!"></slot>
+        <slot msg="hello world."></slot>
     </div>`,
   data () {
     return {
