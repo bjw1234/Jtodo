@@ -1,10 +1,6 @@
-import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Todo from '../views/todo/todo.vue';
 import Login from '../views/login/login.vue';
-
-// 全局注册
-Vue.use(VueRouter);
 
 const routes = [
   {
@@ -26,4 +22,6 @@ const router = new VueRouter({
   mode: 'history'
 });
 
-export default router;
+// 导出一个方法，在index.js中创建router，并注册
+// 方便管理，有利于服务器端渲染
+export default () => router;
