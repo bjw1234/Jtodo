@@ -1,15 +1,23 @@
 const path = require('path');
 const webpack = require('webpack');
+const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssPlugin = require('mini-css-extract-plugin');
 
 const WebpackMerge = require('webpack-merge');
 const BaseConfig = require('./webpack.config.base');
+const VueServerPlugin = require('vue-server-renderer/server-plugin');
 
 let config = WebpackMerge(BaseConfig, {
-  target: 'node',
   mode: 'development',
+  target: 'node',
   devtool: 'source-map',
-  entry: path.join(__dirname, '../practice/index.js'),
+  entry: path.join(__dirname, '../src/server-entry.js'),
+  output: {
+    libraryTarget: 'commonjs2',
+    filename: 'server-bundle.js',
+    path: path.join(__dirname, '../server-build')
+  },
+  externals: Object.keys(require('../package.json').dependencies),
   module: {
     rules: [
       {
@@ -29,12 +37,15 @@ let config = WebpackMerge(BaseConfig, {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"development"'
-      }
+    new MiniCssPlugin({
+      filename: 'server-style.css'
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.VUE_ENV': '"server"'
+    }),
+    new VueLoaderPlugin(),
+    new VueServerPlugin()
   ]
 });
 

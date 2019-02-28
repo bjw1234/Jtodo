@@ -1,8 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
-const {VueLoaderPlugin} = require('vue-loader');
+const { VueLoaderPlugin } = require('vue-loader');
 const HTMLPlugin = require('html-webpack-plugin');
 const MiniCssPlugin = require('mini-css-extract-plugin');
+// 帮助我们生成 vue-ssr-client-manifest.json 文件
+const VueClientPlugin = require('vue-server-renderer/client-plugin');
 
 const WebpackMerge = require('webpack-merge');
 const BaseConfig = require('./webpack.config.base');
@@ -19,7 +21,8 @@ const defaultPlugins = [
   new VueLoaderPlugin(),
   new HTMLPlugin({
     template: path.join(__dirname, '../src/template.html')
-  })
+  }),
+  new VueClientPlugin()
 ];
 
 let config = null;
@@ -47,7 +50,10 @@ if (isDev) {
       overlay: {
         errors: true
       },
-      historyApiFallback: true,
+      publicPath: '/public/',
+      historyApiFallback: {
+        index: '/public/index.html'
+      },
       // 启动热加载功能
       hot: true
     },
