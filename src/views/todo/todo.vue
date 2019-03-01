@@ -27,6 +27,9 @@
 
   let id = 0;
   export default {
+    metaInfo: {
+      title: 'Todo Page'
+    },
     components: {
       Item,
       Tabs

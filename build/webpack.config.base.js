@@ -1,11 +1,10 @@
 const path = require('path');
 
 const config = {
-  entry: path.join(__dirname, '../src/index.js'),
+  entry: path.join(__dirname, '../src/client-entry.js'),
   output: {
     filename: 'bundle.[hash:8].js',
-    path: path.join(__dirname, '../dist'),
-    publicPath: 'http://127.0.0.1:8000/public/'
+    path: path.join(__dirname, '../dist')
   },
   module: {
     rules: [

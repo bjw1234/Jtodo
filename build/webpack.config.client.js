@@ -31,6 +31,9 @@ if (isDev) {
   config = WebpackMerge(BaseConfig, {
     mode: 'development',
     devtool: '#cheap-module-eval-source-map',
+    output: {
+      publicPath: 'http://127.0.0.1:8000/public/'
+    },
     module: {
       rules: [
         {
@@ -65,10 +68,11 @@ if (isDev) {
   config = WebpackMerge(BaseConfig, {
     mode: 'production',
     entry: {
-      app: path.join(__dirname, '../src/index.js')
+      app: path.join(__dirname, '../src/client-entry.js')
     },
     output: {
-      filename: '[name].[chunkhash:8].js'
+      filename: '[name].[chunkhash:8].js',
+      publicPath: '/dist/'
     },
     module: {
       rules: [

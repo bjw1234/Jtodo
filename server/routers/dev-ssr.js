@@ -1,3 +1,7 @@
+/**
+ * 服务器端渲染
+ * 导出路由处理对象router
+ */
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
@@ -6,13 +10,16 @@ const Router = require('koa-router');
 const MemoryFs = require('memory-fs');
 const VueServerRenderer = require('vue-server-renderer');
 
-const serverRender = require('./server-render');
+// 加载服务器端渲染文件
+const serverRender = require('../server-render');
+// 加载webpack配置文件
 const serverConfig = require('../../build/webpack.config.server');
 
 const serverCompiler = webpack(serverConfig);
 const mfs = new MemoryFs();
 serverCompiler.outputFileSystem = mfs;
 
+// 打包服务器端运行的bundle文件
 let bundle = null;
 serverCompiler.watch({}, (err, stats) => {
   if (err) throw err;
@@ -35,11 +42,10 @@ const handleSSR = async (ctx) => {
     ctx.body = 'wait a minute.';
     return;
   }
-
+  // 得到带有静态文件路径的json文件
   const clientManifestResp = await axios.get(
     'http://localhost:8000/public/vue-ssr-client-manifest.json'
   );
-
   const clientManifest = clientManifestResp.data;
 
   const template = fs.readFileSync(
@@ -55,6 +61,7 @@ const handleSSR = async (ctx) => {
   await serverRender(ctx, renderer, template);
 };
 
+// 无论用户访问哪个路由，都交给 handleSSR 去处理
 const router = new Router();
 router.get('*', handleSSR);
 
