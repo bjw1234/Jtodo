@@ -17,6 +17,12 @@
         </div>
       </transition>
     </div>
+    <button
+      class="add-notify"
+      @click="addNotify"
+    >
+      添加notification
+    </button>
     <div class="footer">
       <FooterCom />
     </div>
@@ -51,6 +57,14 @@
       addAsyncHandler () {
         this.setCountAsync(9527);
 //        this.$store.dispatch('setCountAsync', 9988);
+      },
+      addNotify (e) {
+        e.preventDefault();
+        this.$notify({
+          autoCloseTime: 3000,
+          content: 'hello world!',
+          btn: 'close'
+        });
       }
     }
   };

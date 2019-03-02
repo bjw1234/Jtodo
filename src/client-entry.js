@@ -5,3 +5,5 @@ const { app, router } = createApp();
 router.onReady(() => {
   app.$mount('#root');
 });
+
+window.vm = app;
