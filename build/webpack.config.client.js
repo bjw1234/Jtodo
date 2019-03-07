@@ -59,7 +59,11 @@ if (isDev) {
         index: '/public/index.html'
       },
       // 启动热加载功能
-      hot: true
+      hot: true,
+      proxy: {
+        '/api': 'http://localhost:3333',
+        '/user': 'http://localhost:3333'
+      }
     },
     plugins: defaultPlugins.concat([
       new webpack.HotModuleReplacementPlugin()

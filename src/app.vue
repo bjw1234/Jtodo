@@ -1,25 +1,21 @@
 <template>
   <div id="app">
+    <loading :loading-visible="loadingVisible"></loading>
     <div class="content">
       <HeaderCom />
-      <p>{{ count }}</p>
-      <button @click="addHandler">
-        加一
-      </button>
-      <button @click="addAsyncHandler">
-        异步修改
-      </button>
-      <transition name="fade">
-        <div class="router-view">
-          <keep-alive>
-            <router-view />
-          </keep-alive>
-        </div>
+      <transition
+        mode="out-in"
+        name="fade"
+      >
+        <keep-alive>
+          <router-view />
+        </keep-alive>
       </transition>
     </div>
     <button
+      style="float: left"
       class="add-notify"
-      @click="addNotify"
+      @click.prevent="addNotify"
     >
       添加notification
     </button>
@@ -42,30 +38,22 @@
     },
     computed: {
       ...mapGetters([
-        'count'
+        'count', 'loadingVisible'
       ])
     },
     methods: {
-      ...mapMutations({
-        setCount: types.SET_COUNT
-      }),
-      ...mapActions(['setCountAsync']),
-      addHandler () {
-        let c = this.count;
-        this.setCount(++c);
-      },
-      addAsyncHandler () {
-        this.setCountAsync(9527);
-//        this.$store.dispatch('setCountAsync', 9988);
-      },
-      addNotify (e) {
-        e.preventDefault();
+      addNotify () {
         this.$notify({
           autoCloseTime: 3000,
           content: 'hello world!',
           btn: 'close'
         });
-      }
+      },
+      ...mapMutations({
+        setCount: types.SET_COUNT,
+        setLoadingVisible: types.SET_LOADING_VISIBLE
+      }),
+      ...mapActions(['setCountAsync'])
     }
   };
 </script>
@@ -82,5 +70,5 @@
     min-height 100vh
     background rgba(0, 0, 0, .5)
     .content
-      min-height calc(100vh - 100px)
+      min-height calc(100vh - 120px)
 </style>

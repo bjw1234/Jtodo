@@ -19,15 +19,10 @@ const config = {
         loader: 'vue-loader'
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: path.join(__dirname, 'node_modules'),
         include: path.join(__dirname, 'src'),
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-        }
+        loader: 'babel-loader'
       },
       { // 处理图片资源
         test: /\.(jpg|jpeg|svg|png|gif)$/,

@@ -12,6 +12,7 @@
       :key="todo.id"
       :todo="todo"
       @del="deleteTodo"
+      @toggle="toggleTodo"
     ></Item>
     <Tabs
       :filter="filter"
@@ -24,8 +25,8 @@
 <script type="text/ecmascript-6">
   import Item from './item.vue';
   import Tabs from './tabs.vue';
+  import { mapActions, mapGetters } from 'vuex';
 
-  let id = 0;
   export default {
     metaInfo: {
       title: 'Todo Page'
@@ -36,7 +37,6 @@
     },
     data () {
       return {
-        todos: [],
         filter: 'all'
       };
     },
@@ -47,29 +47,58 @@
         }
         const completed = this.filter === 'completed';
         return this.todos.filter(todo => completed === todo.completed);
-      }
+      },
+      ...mapGetters(['todos'])
+    },
+    asyncData ({ store }) {
+      console.log('async data');
+      return Promise.resolve(store.dispatch('getTodosAsync'));
+    },
+    mounted () {
+      this.getTodosAsync({
+        ctx: this
+      });
     },
     methods: {
       addTodo (e) {
         if (e.target.value.trim() === '') {
           return;
         }
-        this.todos.unshift({
-          id: id++,
-          content: e.target.value.trim(),
-          completed: false
+        this.addTodoAsync({
+          ctx: this,
+          content: e.target.value.trim()
         });
         e.target.value = '';
       },
       deleteTodo (id) {
-        this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1);
+        this.deleteTodoAsync({
+          ctx: this,
+          id
+        });
+      },
+      toggleTodo (todo) {
+        this.updateTodoAsync({
+          ctx: this,
+          id: todo.id,
+          flag: !todo.completed
+        });
       },
       toggleFilter (state) {
         this.filter = state;
       },
       clearAllCompleted () {
-        this.todos = this.todos.filter(todo => !todo.completed);
-      }
+        let ids = [];
+        this.todos.forEach(todo => {
+          if (todo.completed) {
+            ids.push(todo.id);
+          }
+        });
+        this.deleteCompletedAsync({
+          ctx: this,
+          ids
+        });
+      },
+      ...mapActions(['getTodosAsync', 'deleteTodoAsync', 'addTodoAsync', 'updateTodoAsync', 'deleteCompletedAsync'])
     }
   };
 </script>

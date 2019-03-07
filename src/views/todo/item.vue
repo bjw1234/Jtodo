@@ -1,9 +1,10 @@
 <template>
   <div :class="['todo-item',todo.completed?'completed':'']">
     <input
-      v-model="todo.completed"
       type="checkbox"
       class="toggle"
+      :checked="todo.completed"
+      @click.prevent="toggleClick(todo)"
     >
     <label>{{ todo.content }}</label>
     <button
@@ -24,6 +25,9 @@
     methods: {
       deleteTodo () {
         this.$emit('del', this.todo.id);
+      },
+      toggleClick (todo) {
+        this.$emit('toggle', todo);
       }
     }
   };
