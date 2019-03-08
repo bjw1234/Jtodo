@@ -1,8 +1,5 @@
 import * as types from './mutation-types';
-import {
-  getAllTodos, deleteTodo,
-  addTodo, updateTodo, deleteCompleted
-} from '../common/js/request';
+import model from 'model'; // 服务端和客户端渲染时用的model不一样，本质上都是向远程服务器请求数据
 
 // 处理异步修改
 export const setCountAsync = (store, count) => {
@@ -18,7 +15,7 @@ function handleError (ctx, e) {
       autoCloseTime: 3000,
       content: '你先登录咯'
     });
-    ctx.router.replace('/login');
+    ctx.$router.replace('/login');
     return;
   }
   ctx.$notify({
@@ -43,8 +40,11 @@ function showLogo (ctx, resp) {
  */
 export const getTodosAsync = async (store, { ctx } = {}) => {
   try {
-    let resp = await getAllTodos();
-    if (!ctx) return resp; // 服务端渲染情况
+    let resp = await model.getAllTodos();
+    if (!ctx) { // 服务端渲染情况
+      store.commit(types.SET_TODOS, resp.reverse());
+      return resp;
+    }
     if (resp.data.error) {
       showLogo(ctx, resp.data.data);
       store.commit(types.SET_LOADING_VISIBLE, false);
@@ -68,7 +68,7 @@ export const getTodosAsync = async (store, { ctx } = {}) => {
 export const deleteTodoAsync = async (store, { ctx, id }) => {
   try {
     store.commit(types.SET_LOADING_VISIBLE, true);
-    let resp = await deleteTodo(id);
+    let resp = await model.deleteTodo(id);
     if (resp.data.error) {
       showLogo(ctx, resp.data.data);
       store.commit(types.SET_LOADING_VISIBLE, false);
@@ -93,7 +93,7 @@ export const deleteTodoAsync = async (store, { ctx, id }) => {
 export const addTodoAsync = async (store, { ctx, content }) => {
   try {
     store.commit(types.SET_LOADING_VISIBLE, true);
-    let resp = await addTodo(content);
+    let resp = await model.addTodo(content);
     if (resp.data.error) {
       showLogo(ctx, resp.data.data);
       store.commit(types.SET_LOADING_VISIBLE, false);
@@ -119,7 +119,7 @@ export const addTodoAsync = async (store, { ctx, content }) => {
 export const updateTodoAsync = async (store, { ctx, id, flag }) => {
   try {
     store.commit(types.SET_LOADING_VISIBLE, true);
-    let resp = await updateTodo(id, flag);
+    let resp = await model.updateTodo(id, flag);
     if (resp.data.error) {
       showLogo(ctx, resp.data.data);
       store.commit(types.SET_LOADING_VISIBLE, false);
@@ -144,7 +144,7 @@ export const updateTodoAsync = async (store, { ctx, id, flag }) => {
 export const deleteCompletedAsync = async (store, { ctx, ids }) => {
   try {
     store.commit(types.SET_LOADING_VISIBLE, true);
-    let resp = await deleteCompleted(ids);
+    let resp = await model.deleteCompleted(ids);
     if (resp.data.error) {
       showLogo(ctx, resp.data.data);
       store.commit(types.SET_LOADING_VISIBLE, false);

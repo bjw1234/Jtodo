@@ -20,7 +20,6 @@ const createError = (code, resp) => {
 };
 
 const handleRequest = ({ status, data, ...rest }) => {
-  console.log(status, data);
   if (status === 200) {
     return data;
   } else {

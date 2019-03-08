@@ -112,4 +112,11 @@ if (isDev) {
   });
 }
 
+// 客户端model和服务器端不一样
+config.resolve = {
+  alias: {
+    'model': path.join(__dirname, '../src/model/client-model.js')
+  }
+};
+
 module.exports = config;

@@ -51,10 +51,12 @@
       ...mapGetters(['todos'])
     },
     asyncData ({ store }) {
-      console.log('async data');
       return Promise.resolve(store.dispatch('getTodosAsync'));
     },
     mounted () {
+      if (this.todos && this.todos.length > 0) {
+        return; // 有数据，就不发请求了
+      }
       this.getTodosAsync({
         ctx: this
       });

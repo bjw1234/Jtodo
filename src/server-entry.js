@@ -13,6 +13,7 @@ export default context => {
       if (!matchedComponents) {
         return reject(new Error('no component matched'));
       }
+      // 服务端渲染需要用到的数据
       Promise.all(matchedComponents.map(component => {
         if (component.asyncData) {
           return component.asyncData({
@@ -21,11 +22,11 @@ export default context => {
           });
         }
       })).then(data => {
-        console.log(data, typeof data);
+        // 通过app拿到meta对象
+        context.meta = app.$meta();
+        context.state = store.state;
+        resolve(app); // 等全部数据获取完毕后去返回app
       }).catch(err => console.log(err));
-      // 通过app拿到meta对象
-      context.meta = app.$meta();
-      resolve(app);
     });
   });
 }

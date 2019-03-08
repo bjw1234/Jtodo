@@ -35,7 +35,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import { login } from '../../common/js/request';
+  import model from '../../model/client-model';
   import * as types from '../../store/mutation-types';
   import { mapMutations } from 'vuex';
 
@@ -57,7 +57,7 @@
         e.preventDefault();
         if (this.validate()) {
           this.setLoadingVisible(true);
-          login(this.username.trim(), this.password.trim()).then(res => {
+          model.login(this.username.trim(), this.password.trim()).then(res => {
             // 模拟登录延时
             setTimeout(() => {
               this.setLoadingVisible(false);

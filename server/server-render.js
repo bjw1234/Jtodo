@@ -17,7 +17,8 @@ module.exports = async (ctx, renderer, template) => {
       appString,
       style: context.renderStyles(),
       scripts: context.renderScripts(),
-      title: title.text()
+      title: title.text(),
+      initialState: context.renderState()
     });
   } catch (err) {
     console.log('server render error');
