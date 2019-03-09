@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 import Todo from '../views/todo/todo.vue';
 import Login from '../views/login/login.vue';
+// import path from 'path';
 
 const routes = [
   {
@@ -10,10 +11,12 @@ const routes = [
   {
     path: '/todo',
     component: Todo
+    // component: () => import(path.join(__dirname, '../views/todo.vue'))
   },
   {
     path: '/login',
     component: Login
+    // component: () => import(path.join(__dirname, '../views/login.vue'))
   }
 ];
 

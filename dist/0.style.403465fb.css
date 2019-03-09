@@ -54,22 +54,22 @@
   text-shadow: 0 3px 0 2px #eee;
 }
 
-.fade-enter-active[data-v-55a09b89],
-.fade-leave-active[data-v-55a09b89] {
+.fade-enter-active[data-v-50af66a2],
+.fade-leave-active[data-v-50af66a2] {
   -webkit-transition: opacity 1s;
   transition: opacity 1s;
   opacity: 1;
 }
-.fade-enter[data-v-55a09b89],
-.fade-leave-to[data-v-55a09b89] {
+.fade-enter[data-v-50af66a2],
+.fade-leave-to[data-v-50af66a2] {
   opacity: 0;
 }
-#app[data-v-55a09b89] {
+#app[data-v-50af66a2] {
   min-height: 100vh;
   background: rgba(0,0,0,0.5);
 }
-#app .content[data-v-55a09b89] {
-  min-height: calc(100vh - 100px);
+#app .content[data-v-50af66a2] {
+  min-height: calc(100vh - 120px);
 }
 
 .todo-item {
@@ -196,13 +196,13 @@
   border-radius: 5px;
 }
 
-.real-app[data-v-4b45211b] {
+.real-app[data-v-733600f3] {
   width: 700px;
   margin: 0 auto;
   -webkit-box-shadow: 0 0 5px #666;
           box-shadow: 0 0 5px #666;
 }
-.add-input[data-v-4b45211b] {
+.add-input[data-v-733600f3] {
   position: relative;
   margin: 0;
   width: 100%;
@@ -222,6 +222,151 @@
           box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
 }
 
+#login {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 450px;
+  height: 250px;
+  margin: 0 auto;
+  background: #fff;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  padding: 10px 30px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#login .title {
+  margin: 5px 0;
+}
+#login .title .error-msg {
+  color: #f00;
+  font-size: 14px;
+  font-weight: normal;
+}
+#login .login-input {
+  height: 25px;
+  padding-left: 10px;
+  border: 1px solid #eee;
+}
+#login .login-btn {
+  color: #fff;
+  background: #37a4ff;
+  border: none;
+  font-size: 14px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.notification {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #303030;
+  color: #fff;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  position: fixed;
+  min-width: 280px;
+  -webkit-box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.2);
+          box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.2);
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.notification .content {
+  padding: 0;
+}
+.notification .btn {
+  color: #ff4081;
+  padding-left: 24px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+#loading {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0,0,0,0.3);
+}
+#loading .dot-container {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#loading .dot-container .dot {
+  width: 20px;
+  height: 20px;
+  margin: 0 4px;
+  border-radius: 50%;
+  background: #000;
+  -webkit-animation: scale 0.5s linear infinite alternate;
+          animation: scale 0.5s linear infinite alternate;
+}
+#loading .dot-container .dot-1 {
+  background: #f00;
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+#loading .dot-container .dot-2 {
+  background: #008000;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+#loading .dot-container .dot-3 {
+  background: #00f;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+@-webkit-keyframes scale {
+0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+}
+100% {
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+}
+}
+@keyframes scale {
+0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+}
+100% {
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+}
+}
+
 html,
 body {
   margin: 0;
@@ -233,5 +378,15 @@ body {
   font: 14px 'microsoft yahei';
   color: #333;
   font-weight: 500;
+}
+.fade-enter-active,
+.fade-leave-active {
+  opacity: 1;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
